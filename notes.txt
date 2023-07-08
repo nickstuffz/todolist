@@ -1,0 +1,23 @@
+logic module:
+    projects:
+        -name
+        -color-theme
+        todo-items objects:
+        - title
+        - description
+        - dueDate
+        - priority
+
+DOM module:
+    - add / delete projects
+    - add / delete todos
+    - 
+
+
+create using factory functions
+(read documentation again)
+
+UI design:
+design in figma maybe?
+
+
