@@ -5,7 +5,11 @@ module.exports = {
     "./dist/index.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'auto': 'repeat(auto-fit, minmax(300px, 1fr))'
+      }
+    },
   },
   plugins: [],
 }
