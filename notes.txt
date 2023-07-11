@@ -21,3 +21,6 @@ UI design:
 design in figma maybe?
 
 
+add scrollbars for overflow tasks
+
+Ctrl+C to kill web server

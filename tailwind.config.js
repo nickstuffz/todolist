@@ -2,12 +2,12 @@
 module.exports = {
   content: [
     "./src/**/*.js",
-    "./dist/index.html"
+    "./dist/index.html",
   ],
   theme: {
     extend: {
       gridTemplateColumns: {
-        'auto': 'repeat(auto-fit, minmax(300px, 1fr))'
+        'auto': 'repeat(auto-fit, minmax(300px, 1fr))',
       }
     },
   },
