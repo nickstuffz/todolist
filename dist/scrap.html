@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+</head>
+<body class="bg-neutral-600">
+<script type="module" src="bundle.js" defer></script>
+
+<div id="content" class="flex flex-col">
+
+    <!-- header *completed in loadHeader-->
+    <div class="flex justify-end border-b-4 border-white pt-4">
+        <div class="w-72 bg-white rounded-t1-sm rounded-b1-sm">
+            <h1 class="text-center text-3xl font-bold">Simple. Tasks</h1>
+        </div>
+    </div>
+    
+    <!-- main -->
+    <div>
+        <!-- project grid-->
+        <div class="grid grid-cols-auto gap-4 p-6">
+            <!-- project -->
+            <div class="w-full h-96 border-4 border-white flex flex-col gap-3">
+                <div id="proj-header" class="flex justify-end">
+
+                    <!-- project title -->
+                    <div class="w-3/4 h-12 border-l-4 border-b-4 border-dotted border-white rounded-br-md">
+                    </div>
+                    
+                </div>
+                <!-- task tab container-->
+                <div id="tab-container" class="flex flex-col gap-2">
+                    <!-- task tab -->
+                    <div class="w-11/12 h-9 bg-white rounded-br-lg rounded-tr-lg">
+                    </div>
+                    <div class="w-11/12 h-9 bg-white rounded-br-lg rounded-tr-lg">
+                    </div>
+                    <div class="w-11/12 h-9 bg-white rounded-br-lg rounded-tr-lg">
+                    </div>
+                    <div class="w-11/12 h-9 bg-white rounded-br-lg rounded-tr-lg">
+                    </div>
+                </div>
+                <div id="addTab">
+                    <!-- addIcon -->
+                </div>
+            </div>
+
+            <button id="btn">NewProj</button>
+        </div>
+    </div>
+    
+</div>
+
+
+</body>
+</html>

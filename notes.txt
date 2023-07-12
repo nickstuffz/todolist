@@ -25,4 +25,17 @@ add scrollbars for overflow tasks
 
 Ctrl+C to kill web server
 
-script to change string format from tailwind class to javascript classlist.add
+implement drag and drop to allow tasks to switch projects
+
+
+STEP BACK
+
+each project should be an object. Inside each project should be:
+
+project.title = 'title'
+
+project.tasks which is an array of task objects
+
+method to display title
+
+method to display tasks
