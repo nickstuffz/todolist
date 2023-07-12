@@ -1,6 +1,9 @@
+import {newProject} from './projects.js'
+
 function initializePage() {
     loadHeader();
     loadGrid();
+    newProject();
 
     return;
 }
@@ -11,9 +14,9 @@ function loadHeader() {
     const logo_box = document.createElement('div');
     const logo = document.createElement('div');
 
-    header.classList.add('flex', 'justify-end', 'border-b-4', 'border-white', 'pt-4"');
-    logo_box.classList.add('w-72', 'bg-white', 'rounded-t1-sm', 'rounded-b1-sm');
-    logo.classList.add('text-center', 'text-3xl', 'font-bold');
+    header.classList.add(..."flex justify-end border-b-4 border-white pt-4".split(' '));
+    logo_box.classList.add(..."w-72 bg-white rounded-t1-sm rounded-b1-sm".split(' '));
+    logo.classList.add(..."text-center text-3xl font-bold".split(' '));
 
     logo.innerText = 'Simple. Tasks';
     
@@ -29,16 +32,12 @@ function loadGrid() {
     const grid = document.createElement('div');
     
     grid.classList.add('grid', 'grid-cols-auto', 'gap-4', 'p-6');
+    grid.id = 'grid';
 
     content.append(grid);
 
     return;
 }
-
-function newProject() {
-    
-}
-
 
 
 export {initializePage}

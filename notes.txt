@@ -24,3 +24,5 @@ design in figma maybe?
 add scrollbars for overflow tasks
 
 Ctrl+C to kill web server
+
+script to change string format from tailwind class to javascript classlist.add
