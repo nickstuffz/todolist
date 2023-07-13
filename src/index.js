@@ -1,5 +1,5 @@
 import './style.css';
-import {initializePage} from './action_handler';
+import {initializePage} from './DOM_handler';
 
 initializePage();
 
