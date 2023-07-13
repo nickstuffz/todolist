@@ -8,17 +8,13 @@ const addProj = document.createElement('div');
 const logo_box = document.createElement('div');
 const logo = document.createElement('div');
 const grid = document.createElement('div');
-const proj = document.createElement('div');
-const proj_header = document.createElement('div');
-const proj_title = document.createElement('div');
-const tab_container = document.createElement('div');
-const addTab_container = document.createElement('div');
+
 
 function loadHeader() {
     header.classList.add(..."flex justify-between border-b-4 border-white pt-4".split(' '));
-    addProj.classList.add(..."text-white border-dotted border-l-4 border-t-4 border-r-4 p-2 ml-4".split(' '));
-    logo_box.classList.add(..."w-72 bg-white rounded-t1-sm rounded-b1-sm".split(' '));
-    logo.classList.add(..."text-center text-3xl font-bold".split(' '));
+    addProj.classList.add(..."text-white border-white border-dotted border-l-4 border-t-4 border-r-4 p-2 ml-4".split(' '));
+    logo_box.classList.add(..."w-72 bg-white".split(' '));
+    logo.classList.add(..."text-center text-3xl font-bold pt-1.5".split(' '));
 
     addProj.innerText = 'add project'
     logo.innerText = 'Simple. Tasks';
@@ -41,16 +37,22 @@ function loadGrid() {
     return;
 }
 
-function pushProject() {
-
+function pushProject(title) {
+    const proj = document.createElement('div');
+    const proj_header = document.createElement('div');
+    const proj_title = document.createElement('div');
+    const tab_container = document.createElement('div');
+    const addTab_container = document.createElement('div');
     const addTab = new Image();
     addTab.src = add_svg;
 
     proj.classList.add(..."w-full h-96 border-4 border-white flex flex-col gap-3".split(' '));
     proj_header.classList.add(..."flex justify-between".split(' '));
-    proj_title.classList.add(..."w-3/4 h-12 border-l-4 border-b-4 border-dotted border-white rounded-br-md".split(' '));
+    proj_title.classList.add(..."w-3/4 h-12 border-l-4 border-b-4 border-dotted border-white text-center text-white font-bold text-2xl pt-1.5".split(' '));
     tab_container.classList.add(..."flex flex-col gap-2".split(' '));
-    addTab.classList.add(..."border-dotted border-l-2 border-b-2 border-r-2 p-1 ml-4".split(' '));
+    addTab.classList.add(..."border-dotted border-white border-l-2 border-b-2 border-r-2 p-1 ml-4".split(' '));
+
+    proj_title.innerText = title;
 
     grid.append(proj);
     proj.append(proj_header, tab_container);
@@ -61,15 +63,12 @@ function pushProject() {
     addTab.addEventListener('click', Clicks.addTabClick);
     
     return;
-
-    // reorder to just chrono instead of child level
 }
 
 
 const Clicks = {
     addProjClick() {
-        createProject();
-        pushProject();
+        pushProject(createProject());
         return;
     },
 
@@ -79,6 +78,7 @@ const Clicks = {
 
     addTabClick() {
         createTab();
+        pushTab();
         return;
     },
 
@@ -90,6 +90,7 @@ const Clicks = {
 function initializePage() {
     loadHeader();
     loadGrid();
+    Clicks.addProjClick();
 
     return;
 }

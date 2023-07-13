@@ -39,3 +39,5 @@ project.tasks which is an array of task objects
 method to display title
 
 method to display tasks
+
+run linting afterwards, plugin for tailwind prettier exists i think

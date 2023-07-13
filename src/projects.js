@@ -1,41 +1,38 @@
-import add_svg from './add.svg';
-
 const projectsArray = [];
 
 const projectFactory = function(title) {
-    const tasksArray=[];
+    const tasksArray = [];
 
     return {
-        title: title
+        title
     }
 };
+
+const tabFactory = function(name, priority, date, notes) {
+    return {
+        name, priority, date, notes
+    }
+}
 
 function createProject() {
     const newProject = projectFactory('new project');
     projectsArray[projectsArray.length] = newProject;
     console.log(projectsArray);
-    return;
+
+    return newProject.title;
 }
 
-
-
-
-const Clicks = {
-    proj_titleClick() {
-
-    },
-
-    addTabClick() {
-        createTab();
-        return;
-    },
-
-    tabClick() {
-
-    },
-};
-
 function createTab() {
+    const newTab = tabFactory('new task', 0, "none", "empty");
+    tasksArray[tasksArray.length] = newTab;
+    console.log(tasksArray);
+
+    return;
+
+
+}
+
+function pushTab() {
     const tab = document.createElement('div');
     const tab_container = document.getElementById('tab_container');
 
@@ -43,8 +40,7 @@ function createTab() {
 
     tab_container.append(tab);
 
-    // issue, how do i reference the project that the evenlistener is activated in?
-    // do i need to change how projects are created?
+
 
     return;
 }
