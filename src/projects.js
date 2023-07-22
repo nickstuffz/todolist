@@ -1,48 +1,56 @@
 const projectsArray = [];
 
-const projectFactory = function(title) {
-    const tasksArray = [];
+function projectFactory(title) {
+  const tasksArray = [];
 
-    return {
-        title
-    }
-};
+  const createTab = function () {
+    const newTab = tabFactory("new task", 0, "none", "empty");
+    tasksArray[tasksArray.length] = newTab;
+    // console.log(projectsArray);
+    console.log(tasksArray);
 
-const tabFactory = function(name, priority, date, notes) {
-    return {
-        name, priority, date, notes
-    }
+    // temporary code
+
+    const tab = document.createElement("div");
+    const tab_container = document.getElementById("tab_container");
+
+    tab.classList.add(
+      ..."w-11/12 h-9 bg-white rounded-br-lg rounded-tr-lg".split(" "),
+    );
+
+    classList = "pt-2 p-4";
+
+    tab_container.append(tab);
+  };
+
+  return {
+    title,
+    createTab,
+  };
+}
+
+function tabFactory(name, priority, date, notes) {
+  return {
+    name,
+    priority,
+    date,
+    notes,
+  };
 }
 
 function createProject() {
-    const newProject = projectFactory('new project');
-    projectsArray[projectsArray.length] = newProject;
-    console.log(projectsArray);
+  const newProject = projectFactory("new project testpotato");
+  projectsArray[projectsArray.length] = newProject;
 
-    return newProject.title;
+  return newProject;
 }
 
-function createTab() {
-    const newTab = tabFactory('new task', 0, "none", "empty");
-    tasksArray[tasksArray.length] = newTab;
-    console.log(tasksArray);
+// update DOM from projectsArray?
 
-    return;
+// perhaps DOM should have an update listener or change function
 
+// then it pushes any changes into the DOM
 
-}
+// forEach project in projects:
 
-function pushTab() {
-    const tab = document.createElement('div');
-    const tab_container = document.getElementById('tab_container');
-
-    tab.classList.add(..."w-11/12 h-9 bg-white rounded-br-lg rounded-tr-lg".split(' '));
-
-    tab_container.append(tab);
-
-
-
-    return;
-}
-
-export {createProject}
+export { createProject, projectsArray };

@@ -30,14 +30,8 @@ implement drag and drop to allow tasks to switch projects
 
 STEP BACK
 
-each project should be an object. Inside each project should be:
 
-project.title = 'title'
-
-project.tasks which is an array of task objects
-
-method to display title
-
-method to display tasks
 
 run linting afterwards, plugin for tailwind prettier exists i think
+
+write a setup file git template for tailwind + webpack 

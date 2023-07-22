@@ -1,5 +1,6 @@
-import './style.css';
-import {initializePage} from './DOM_handler';
+import "./style.css";
+import { initializePage } from "./DOM_handler";
 
 initializePage();
 
+test;
