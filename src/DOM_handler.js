@@ -87,7 +87,9 @@ function pushProjects() {
 
     proj_title.addEventListener("click", Clicks.proj_title_click);
     addTab.addEventListener("click", Clicks.addTab_click);
-    closeProj.addEventListener("click", Clicks.closeProj_click);
+    closeProj.addEventListener("click", function () {
+      Clicks.closeProj_click.call(project);
+    });
 
     grid.append(proj);
     proj.append(proj_header, tab_container, closeProj_container);
@@ -104,17 +106,14 @@ const Clicks = {
   },
   proj_title_click() {},
   addTab_click() {},
-  closeProj_click() {},
+  closeProj_click() {
+    console.log(this);
+  },
 };
 
 function updateDisplay() {
   clearProjects();
   pushProjects();
-}
-
-function addProject() {
-  createProject();
-  updateDisplay();
 }
 
 function initializePage() {
