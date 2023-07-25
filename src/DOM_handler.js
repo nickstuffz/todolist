@@ -1,5 +1,6 @@
 import { createProject, projectsArray } from "./internals.js";
 import add_svg from "./add.svg";
+import close_svg from "./close.svg";
 
 const content = document.getElementById("content");
 const header = document.createElement("div");
@@ -37,22 +38,28 @@ function loadGrid() {
   content.append(grid);
 }
 
-function updateDisplay() {
+function clearProjects() {
   let projects = document.getElementsByClassName("project");
   while (projects[0]) {
     projects[0].parentNode.removeChild(projects[0]);
   }
+}
+
+function pushProjects() {
   projectsArray.forEach((project) => {
     const proj = document.createElement("div");
     const proj_header = document.createElement("div");
     const proj_title = document.createElement("div");
-    const tab_container = document.createElement("div");
     const addTab_container = document.createElement("div");
     const addTab = new Image();
     addTab.src = add_svg;
+    const tab_container = document.createElement("div");
+    const closeProj_container = document.createElement("div");
+    const closeProj = new Image();
+    closeProj.src = close_svg;
 
     proj.classList.add(
-      ..."project w-full h-96 border-4 border-white flex flex-col gap-3".split(
+      ..."project relative w-full h-96 border-4 border-white flex flex-col gap-3".split(
         " ",
       ),
     );
@@ -62,11 +69,16 @@ function updateDisplay() {
         " ",
       ),
     );
+    addTab.classList.add(
+      ..."border-dotted border-white border-l-2 border-b-2 border-r-2 p-1 ml-4".split(
+        " ",
+      ),
+    );
     tab_container.classList.add(
       ..."tab_container flex flex-col gap-2".split(" "),
     );
-    addTab.classList.add(
-      ..."border-dotted border-white border-l-2 border-b-2 border-r-2 p-1 ml-4".split(
+    closeProj.classList.add(
+      ..."absolute bottom-0 right-0 border-l-2 border-t-2 border-dotted border-white p-1".split(
         " ",
       ),
     );
@@ -74,10 +86,16 @@ function updateDisplay() {
     proj_title.innerText = project.title;
 
     grid.append(proj);
-    proj.append(proj_header, tab_container);
+    proj.append(proj_header, tab_container, closeProj_container);
     proj_header.append(addTab_container, proj_title);
     addTab_container.append(addTab);
+    closeProj_container.append(closeProj);
   });
+}
+
+function updateDisplay() {
+  clearProjects();
+  pushProjects();
 }
 
 function addProject() {

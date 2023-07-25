@@ -1,8 +1,13 @@
 const projectsArray = [];
 
 const projectMethods = {
-  createTab() {},
-  deleteProject() {},
+  createTab() {
+    let index = tabArray.length;
+    this.tabsArray[index] = tabFactory();
+  },
+  deleteProject() {
+    projectsArray.splice(projectsArray.indexOf(this), 1);
+  },
 };
 
 const tabMethods = {
