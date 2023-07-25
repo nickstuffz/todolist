@@ -1,4 +1,4 @@
 **/*.css
-**/*.json
-**/*.config
 **/bundle.js
+**/*.json
+.eslintignore

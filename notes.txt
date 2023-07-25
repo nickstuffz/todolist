@@ -35,3 +35,5 @@ STEP BACK
 run linting afterwards, plugin for tailwind prettier exists i think
 
 write a setup file git template for tailwind + webpack 
+
+sort tailwind classes after the fact using class=

@@ -18,7 +18,7 @@ function projectFactory(title) {
       ..."w-11/12 h-9 bg-white rounded-br-lg rounded-tr-lg".split(" "),
     );
 
-    classList = "pt-2 p-4";
+    tab.className = "pt-2 p-4";
 
     tab_container.append(tab);
   };
