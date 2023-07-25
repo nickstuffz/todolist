@@ -24,7 +24,7 @@ function loadHeader() {
   addProj.innerText = "add project";
   logo.innerText = "Simple. Tasks";
 
-  addProj.addEventListener("click", addProject);
+  addProj.addEventListener("click", Clicks.addProj_click);
 
   content.append(header);
   header.append(addProj, logo_box);
@@ -85,6 +85,10 @@ function pushProjects() {
 
     proj_title.innerText = project.title;
 
+    proj_title.addEventListener("click", Clicks.proj_title_click);
+    addTab.addEventListener("click", Clicks.addTab_click);
+    closeProj.addEventListener("click", Clicks.closeProj_click);
+
     grid.append(proj);
     proj.append(proj_header, tab_container, closeProj_container);
     proj_header.append(addTab_container, proj_title);
@@ -92,6 +96,16 @@ function pushProjects() {
     closeProj_container.append(closeProj);
   });
 }
+
+const Clicks = {
+  addProj_click() {
+    createProject();
+    updateDisplay();
+  },
+  proj_title_click() {},
+  addTab_click() {},
+  closeProj_click() {},
+};
 
 function updateDisplay() {
   clearProjects();
