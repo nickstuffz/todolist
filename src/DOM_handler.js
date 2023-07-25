@@ -1,5 +1,5 @@
-import { createProject } from "./internals.js";
-// import add_svg from "./add.svg";
+import { createProject, projectsArray } from "./internals.js";
+import add_svg from "./add.svg";
 
 const content = document.getElementById("content");
 const header = document.createElement("div");
@@ -37,9 +37,52 @@ function loadGrid() {
   content.append(grid);
 }
 
+function updateDisplay() {
+  let projects = document.getElementsByClassName("project");
+  while (projects[0]) {
+    projects[0].parentNode.removeChild(projects[0]);
+  }
+  projectsArray.forEach((project) => {
+    const proj = document.createElement("div");
+    const proj_header = document.createElement("div");
+    const proj_title = document.createElement("div");
+    const tab_container = document.createElement("div");
+    const addTab_container = document.createElement("div");
+    const addTab = new Image();
+    addTab.src = add_svg;
+
+    proj.classList.add(
+      ..."project w-full h-96 border-4 border-white flex flex-col gap-3".split(
+        " ",
+      ),
+    );
+    proj_header.classList.add(..."flex justify-between".split(" "));
+    proj_title.classList.add(
+      ..."w-3/4 h-12 border-l-4 border-b-4 border-dotted border-white text-center text-white font-bold text-2xl pt-1.5".split(
+        " ",
+      ),
+    );
+    tab_container.classList.add(
+      ..."tab_container flex flex-col gap-2".split(" "),
+    );
+    addTab.classList.add(
+      ..."border-dotted border-white border-l-2 border-b-2 border-r-2 p-1 ml-4".split(
+        " ",
+      ),
+    );
+
+    proj_title.innerText = project.title;
+
+    grid.append(proj);
+    proj.append(proj_header, tab_container);
+    proj_header.append(addTab_container, proj_title);
+    addTab_container.append(addTab);
+  });
+}
+
 function addProject() {
   createProject();
-  // updateDisplay();
+  updateDisplay();
 }
 
 function initializePage() {

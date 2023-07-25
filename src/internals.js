@@ -34,8 +34,8 @@ function tabFactory() {
 }
 
 function createProject() {
-  const index = projects.length;
+  let index = projectsArray.length;
   projectsArray[index] = projectFactory();
 }
 
-export { createProject };
+export { createProject, projectsArray };

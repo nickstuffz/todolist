@@ -16,7 +16,7 @@
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   initializePage: () => (/* binding */ initializePage)\n/* harmony export */ });\n/* harmony import */ var _internals_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./internals.js */ \"./src/internals.js\");\n\n// import add_svg from \"./add.svg\";\n\nconst content = document.getElementById(\"content\");\nconst header = document.createElement(\"div\");\nconst addProj = document.createElement(\"div\");\nconst logo_box = document.createElement(\"div\");\nconst logo = document.createElement(\"div\");\nconst grid = document.createElement(\"div\");\nfunction loadHeader() {\n  header.classList.add(...\"flex justify-between border-b-4 border-white pt-4\".split(\" \"));\n  addProj.classList.add(...\"ml-4 border-l-4 border-r-4 border-t-4 border-dotted border-white p-2 text-white\".split(\" \"));\n  logo_box.classList.add(...\"w-72 bg-white\".split(\" \"));\n  logo.classList.add(...\"pt-1.5 text-center text-3xl font-bold\".split(\" \"));\n  addProj.innerText = \"add project\";\n  logo.innerText = \"Simple. Tasks\";\n  addProj.addEventListener(\"click\", addProject);\n  content.append(header);\n  header.append(addProj, logo_box);\n  logo_box.append(logo);\n}\nfunction loadGrid() {\n  grid.classList.add(...\"grid grid-cols-auto gap-4 p-6\".split(\" \"));\n  grid.id = \"grid\";\n  content.append(grid);\n}\nfunction addProject() {\n  (0,_internals_js__WEBPACK_IMPORTED_MODULE_0__.createProject)();\n  // updateDisplay();\n}\n\nfunction initializePage() {\n  loadHeader();\n  loadGrid();\n}\n\n\n//# sourceURL=webpack://todolist/./src/DOM_handler.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   initializePage: () => (/* binding */ initializePage)\n/* harmony export */ });\n/* harmony import */ var _internals_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./internals.js */ \"./src/internals.js\");\n/* harmony import */ var _add_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./add.svg */ \"./src/add.svg\");\n\n\nconst content = document.getElementById(\"content\");\nconst header = document.createElement(\"div\");\nconst addProj = document.createElement(\"div\");\nconst logo_box = document.createElement(\"div\");\nconst logo = document.createElement(\"div\");\nconst grid = document.createElement(\"div\");\nfunction loadHeader() {\n  header.classList.add(...\"flex justify-between border-b-4 border-white pt-4\".split(\" \"));\n  addProj.classList.add(...\"ml-4 border-l-4 border-r-4 border-t-4 border-dotted border-white p-2 text-white\".split(\" \"));\n  logo_box.classList.add(...\"w-72 bg-white\".split(\" \"));\n  logo.classList.add(...\"pt-1.5 text-center text-3xl font-bold\".split(\" \"));\n  addProj.innerText = \"add project\";\n  logo.innerText = \"Simple. Tasks\";\n  addProj.addEventListener(\"click\", addProject);\n  content.append(header);\n  header.append(addProj, logo_box);\n  logo_box.append(logo);\n}\nfunction loadGrid() {\n  grid.classList.add(...\"grid grid-cols-auto gap-4 p-6\".split(\" \"));\n  grid.id = \"grid\";\n  content.append(grid);\n}\nfunction updateDisplay() {\n  let projects = document.getElementsByClassName(\"project\");\n  while (projects[0]) {\n    projects[0].parentNode.removeChild(projects[0]);\n  }\n  _internals_js__WEBPACK_IMPORTED_MODULE_0__.projectsArray.forEach(project => {\n    const proj = document.createElement(\"div\");\n    const proj_header = document.createElement(\"div\");\n    const proj_title = document.createElement(\"div\");\n    const tab_container = document.createElement(\"div\");\n    const addTab_container = document.createElement(\"div\");\n    const addTab = new Image();\n    addTab.src = _add_svg__WEBPACK_IMPORTED_MODULE_1__;\n    proj.classList.add(...\"project w-full h-96 border-4 border-white flex flex-col gap-3\".split(\" \"));\n    proj_header.classList.add(...\"flex justify-between\".split(\" \"));\n    proj_title.classList.add(...\"w-3/4 h-12 border-l-4 border-b-4 border-dotted border-white text-center text-white font-bold text-2xl pt-1.5\".split(\" \"));\n    tab_container.classList.add(...\"tab_container flex flex-col gap-2\".split(\" \"));\n    addTab.classList.add(...\"border-dotted border-white border-l-2 border-b-2 border-r-2 p-1 ml-4\".split(\" \"));\n    proj_title.innerText = project.title;\n    grid.append(proj);\n    proj.append(proj_header, tab_container);\n    proj_header.append(addTab_container, proj_title);\n    addTab_container.append(addTab);\n  });\n}\nfunction addProject() {\n  (0,_internals_js__WEBPACK_IMPORTED_MODULE_0__.createProject)();\n  updateDisplay();\n}\nfunction initializePage() {\n  loadHeader();\n  loadGrid();\n}\n\n\n//# sourceURL=webpack://todolist/./src/DOM_handler.js?");
 
 /***/ }),
 
@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createProject: () => (/* binding */ createProject)\n/* harmony export */ });\nconst projectsArray = [];\nconst projectMethods = {\n  createTab() {},\n  deleteProject() {}\n};\nconst tabMethods = {\n  deleteTab() {}\n};\nfunction projectFactory() {\n  let title = \"new project\";\n  const tabsArray = [];\n  return Object.assign(Object.create(projectMethods), {\n    title,\n    tabsArray\n  });\n}\nfunction tabFactory() {\n  let title = \"new tab\";\n  let priority = 0;\n  let date = \"date\";\n  let notes = \"notes\";\n  return Object.assign(Object.create(projectMethods), {\n    title,\n    priority,\n    date,\n    notes\n  });\n}\nfunction createProject() {\n  const index = projects.length;\n  projectsArray[index] = projectFactory();\n}\n\n\n//# sourceURL=webpack://todolist/./src/internals.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createProject: () => (/* binding */ createProject),\n/* harmony export */   projectsArray: () => (/* binding */ projectsArray)\n/* harmony export */ });\nconst projectsArray = [];\nconst projectMethods = {\n  createTab() {},\n  deleteProject() {}\n};\nconst tabMethods = {\n  deleteTab() {}\n};\nfunction projectFactory() {\n  let title = \"new project\";\n  const tabsArray = [];\n  return Object.assign(Object.create(projectMethods), {\n    title,\n    tabsArray\n  });\n}\nfunction tabFactory() {\n  let title = \"new tab\";\n  let priority = 0;\n  let date = \"date\";\n  let notes = \"notes\";\n  return Object.assign(Object.create(projectMethods), {\n    title,\n    priority,\n    date,\n    notes\n  });\n}\nfunction createProject() {\n  let index = projectsArray.length;\n  projectsArray[index] = projectFactory();\n}\n\n\n//# sourceURL=webpack://todolist/./src/internals.js?");
 
 /***/ }),
 
@@ -138,6 +138,16 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj
 
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack://todolist/./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
 
+/***/ }),
+
+/***/ "./src/add.svg":
+/*!*********************!*\
+  !*** ./src/add.svg ***!
+  \*********************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"1da79152de26b4eac133.svg\";\n\n//# sourceURL=webpack://todolist/./src/add.svg?");
+
 /***/ })
 
 /******/ 	});
@@ -191,6 +201,18 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -205,6 +227,29 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/nonce */
