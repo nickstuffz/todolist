@@ -84,11 +84,19 @@ function pushProjects() {
     );
 
     proj_title.innerText = project.title;
+    proj_title.setAttribute("contentEditable", "plaintext-only");
+    proj_title.onkeydown = function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        proj_title.setAttribute("contentEditable", "false");
+        project.title = proj_title.innerText;
+        proj_title.setAttribute("contentEditable", "plaintext-only");
+      }
+    };
 
-    proj_title.addEventListener("click", Clicks.proj_title_click);
     addTab.addEventListener("click", Clicks.addTab_click);
     closeProj.addEventListener("click", function () {
-      Clicks.closeProj_click.call(project);
+      Clicks.closeProj_click(project);
     });
 
     grid.append(proj);
@@ -104,10 +112,10 @@ const Clicks = {
     createProject();
     updateDisplay();
   },
-  proj_title_click() {},
   addTab_click() {},
-  closeProj_click() {
-    console.log(this);
+  closeProj_click(project) {
+    project.deleteProject();
+    updateDisplay();
   },
 };
 
