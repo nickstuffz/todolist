@@ -94,7 +94,10 @@ function pushProjects() {
       }
     };
 
-    addTab.addEventListener("click", Clicks.addTab_click);
+    proj_title.addEventListener("click", Clicks.proj_title_click);
+    addTab.addEventListener("click", function () {
+      Clicks.addTab_click(project);
+    });
     closeProj.addEventListener("click", function () {
       Clicks.closeProj_click(project);
     });
@@ -107,21 +110,48 @@ function pushProjects() {
   });
 }
 
+function pushTabs(project) {
+  project.tabsArray.forEach((tab) => {
+    //
+  });
+
+  // const tab_container = document.getElementById("tab_container");
+  // const tab = document.createElement("div");
+
+  // tab.classList.add(
+  //   ..."h-9 w-11/12 rounded-br-lg rounded-tr-lg bg-white".split(" "),
+  // );
+
+  // tab_container.append(tab);
+}
+
 const Clicks = {
   addProj_click() {
     createProject();
-    updateDisplay();
+    displayProjects();
   },
-  addTab_click() {},
+  proj_title_click() {
+    this.innerText = "";
+  },
+  addTab_click(project) {
+    project.createTab();
+    console.log(projectsArray);
+    displayTabs(project);
+  },
   closeProj_click(project) {
     project.deleteProject();
-    updateDisplay();
+    displayProjects();
   },
 };
 
-function updateDisplay() {
+function displayProjects() {
   clearProjects();
   pushProjects();
+}
+
+function displayTabs(project) {
+  // clearTabs? Maybe
+  pushTabs(project);
 }
 
 function initializePage() {

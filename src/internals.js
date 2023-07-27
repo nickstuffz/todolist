@@ -2,7 +2,7 @@ const projectsArray = [];
 
 const projectMethods = {
   createTab() {
-    let index = tabArray.length;
+    let index = this.tabsArray.length;
     this.tabsArray[index] = tabFactory();
   },
   deleteProject() {

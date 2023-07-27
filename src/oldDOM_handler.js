@@ -75,16 +75,18 @@ function pushProject(newProject) {
   addTab.addEventListener("click", newProject.createTab);
 }
 
-// function pushTab() {
-//     const tab = document.createElement('div');
-//     const tab_container = document.getElementById('tab_container');
+function pushTab() {
+  const tab = document.createElement("div");
+  const tab_container = document.getElementById("tab_container");
 
-//     tab.classList.add(..."w-11/12 h-9 bg-white rounded-br-lg rounded-tr-lg".split(' '));
+  tab.classList.add(
+    ..."h-9 w-11/12 rounded-br-lg rounded-tr-lg bg-white".split(" "),
+  );
 
-//     tab_container.append(tab);
+  tab_container.append(tab);
 
-//     return;
-// }
+  return;
+}
 
 const Clicks = {
   addProjClick() {
