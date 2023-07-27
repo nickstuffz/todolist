@@ -39,10 +39,11 @@ function loadGrid() {
 }
 
 function clearProjects() {
-  let projects = document.getElementsByClassName("project");
-  while (projects[0]) {
-    projects[0].parentNode.removeChild(projects[0]);
-  }
+  grid.replaceChildren();
+}
+
+function clearTabs(tab_container) {
+  tab_container.replaceChildren();
 }
 
 function pushProjects() {
@@ -96,7 +97,7 @@ function pushProjects() {
 
     proj_title.addEventListener("click", Clicks.proj_title_click);
     addTab.addEventListener("click", function () {
-      Clicks.addTab_click(project);
+      Clicks.addTab_click(project, tab_container);
     });
     closeProj.addEventListener("click", function () {
       Clicks.closeProj_click(project);
@@ -107,22 +108,21 @@ function pushProjects() {
     proj_header.append(addTab_container, proj_title);
     addTab_container.append(addTab);
     closeProj_container.append(closeProj);
+
+    pushTabs(project, tab_container);
   });
 }
 
-function pushTabs(project) {
-  project.tabsArray.forEach((tab) => {
-    //
+function pushTabs(project, tab_container) {
+  project.tabsArray.forEach(() => {
+    const tab = document.createElement("div");
+
+    tab.classList.add(
+      ..."h-9 w-11/12 rounded-br-lg rounded-tr-lg bg-white".split(" "),
+    );
+
+    tab_container.append(tab);
   });
-
-  // const tab_container = document.getElementById("tab_container");
-  // const tab = document.createElement("div");
-
-  // tab.classList.add(
-  //   ..."h-9 w-11/12 rounded-br-lg rounded-tr-lg bg-white".split(" "),
-  // );
-
-  // tab_container.append(tab);
 }
 
 const Clicks = {
@@ -133,10 +133,9 @@ const Clicks = {
   proj_title_click() {
     this.innerText = "";
   },
-  addTab_click(project) {
+  addTab_click(project, tab_container) {
     project.createTab();
-    console.log(projectsArray);
-    displayTabs(project);
+    displayTabs(project, tab_container);
   },
   closeProj_click(project) {
     project.deleteProject();
@@ -149,9 +148,9 @@ function displayProjects() {
   pushProjects();
 }
 
-function displayTabs(project) {
-  // clearTabs? Maybe
-  pushTabs(project);
+function displayTabs(project, tab_container) {
+  clearTabs(tab_container);
+  pushTabs(project, tab_container);
 }
 
 function initializePage() {
