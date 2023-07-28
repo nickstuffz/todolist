@@ -71,7 +71,7 @@ function pushProjects() {
       ),
     );
     proj_title.classList.add(
-      ..."h-12 w-3/4 border-b-4 border-l-4 border-dotted border-white pt-1.5 text-center text-2xl font-bold text-white".split(
+      ..."h-12 w-3/4 border-b-2 border-l-2 border-dotted border-white pt-1.5 text-center text-2xl font-bold text-white".split(
         " ",
       ),
     );
@@ -80,7 +80,7 @@ function pushProjects() {
     );
     closeProj_container.classList.add(..."flex justify-end".split(" "));
     closeProj.classList.add(
-      ..."border-l-2 border-t-2 border-dotted border-white p-1".split(" "),
+      ..."border-l-2 border-t-2 border-dotted border-white p-2".split(" "),
     );
 
     proj_title.innerText = project.title;
@@ -113,16 +113,28 @@ function pushProjects() {
 }
 
 function pushTabs(project, tab_container) {
-  project.tabsArray.forEach(() => {
+  project.tabsArray.forEach((txb) => {
+    const tab_group = document.createElement("div");
     const tab = document.createElement("div");
+    const closeTab = new Image();
+    closeTab.src = close_svg;
 
+    tab_group.classList.add(..."flex w-11/12 items-center".split(" "));
     tab.classList.add(
-      ..."t-2 h-12 w-11/12 rounded-br-lg rounded-tr-lg border-y-2 border-r-2 border-solid".split(
+      ..."h-12 grow rounded-br-lg rounded-tr-lg border-y-2 border-r-2 border-solid border-white".split(
+        " ",
+      ),
+    );
+    closeTab.classList.add(
+      ..."rounded-br-md rounded-tr-md border-y-2 border-r-2 border-dotted border-white p-1".split(
         " ",
       ),
     );
 
-    tab_container.append(tab);
+    tab.innerText = txb.title;
+
+    tab_container.append(tab_group);
+    tab_group.append(tab, closeTab);
   });
 }
 
