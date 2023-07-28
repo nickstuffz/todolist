@@ -1,39 +1,16 @@
-logic module:
-    projects:
-        -name
-        -color-theme
-        todo-items objects:
-        - title
-        - description
-        - dueDate
-        - priority
 
-DOM module:
-    - add / delete projects
-    - add / delete todos
-    - 
+long-term goals:
 
-
-create using factory functions
-(read documentation again)
-
-UI design:
-design in figma maybe?
-
-
-add scrollbars for overflow tasks
-
-Ctrl+C to kill web server
+add masonry to float projects up into empty space
 
 implement drag and drop to allow tasks to switch projects
 
-
-STEP BACK
-
+rewrite project using State reflective logic, rather than clearing and re-displaying
 
 
-run linting afterwards, plugin for tailwind prettier exists i think
+_______________
 
-write a setup file git template for tailwind + webpack 
+ESLint project after, how to undo? separate copy? use a branch
 
-sort tailwind classes after the fact using class=
+Tailwind prettier plugin can't get to work with classList.add
+

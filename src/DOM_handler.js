@@ -50,38 +50,37 @@ function pushProjects() {
   projectsArray.forEach((project) => {
     const proj = document.createElement("div");
     const proj_header = document.createElement("div");
-    const proj_title = document.createElement("div");
     const addTab_container = document.createElement("div");
     const addTab = new Image();
     addTab.src = add_svg;
+    const proj_title = document.createElement("div");
     const tab_container = document.createElement("div");
     const closeProj_container = document.createElement("div");
     const closeProj = new Image();
     closeProj.src = close_svg;
 
     proj.classList.add(
-      ..."project relative w-full h-96 border-4 border-white flex flex-col gap-3".split(
+      ..."relative flex h-max w-full flex-col gap-3 border-4 border-white".split(
         " ",
       ),
     );
     proj_header.classList.add(..."flex justify-between".split(" "));
-    proj_title.classList.add(
-      ..."w-3/4 h-12 border-l-4 border-b-4 border-dotted border-white text-center text-white font-bold text-2xl pt-1.5".split(
+    addTab.classList.add(
+      ..."ml-4 border-b-2 border-l-2 border-r-2 border-dotted border-white p-1".split(
         " ",
       ),
     );
-    addTab.classList.add(
-      ..."border-dotted border-white border-l-2 border-b-2 border-r-2 p-1 ml-4".split(
+    proj_title.classList.add(
+      ..."h-12 w-3/4 border-b-4 border-l-4 border-dotted border-white pt-1.5 text-center text-2xl font-bold text-white".split(
         " ",
       ),
     );
     tab_container.classList.add(
       ..."tab_container flex flex-col gap-2".split(" "),
     );
+    closeProj_container.classList.add(..."flex justify-end".split(" "));
     closeProj.classList.add(
-      ..."absolute bottom-0 right-0 border-l-2 border-t-2 border-dotted border-white p-1".split(
-        " ",
-      ),
+      ..."border-l-2 border-t-2 border-dotted border-white p-1".split(" "),
     );
 
     proj_title.innerText = project.title;
@@ -118,7 +117,9 @@ function pushTabs(project, tab_container) {
     const tab = document.createElement("div");
 
     tab.classList.add(
-      ..."h-9 w-11/12 rounded-br-lg rounded-tr-lg bg-white".split(" "),
+      ..."t-2 h-12 w-11/12 rounded-br-lg rounded-tr-lg border-y-2 border-r-2 border-solid".split(
+        " ",
+      ),
     );
 
     tab_container.append(tab);
