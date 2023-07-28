@@ -14,7 +14,7 @@ function loadHeader() {
     ..."flex justify-between border-b-4 border-white pt-4".split(" "),
   );
   addProj.classList.add(
-    ..."ml-4 border-l-4 border-r-4 border-t-4 border-dotted border-white p-2 text-white".split(
+    ..."ml-6 border-l-4 border-r-4 border-t-4 border-dotted border-white p-2 text-sm text-white".split(
       " ",
     ),
   );
@@ -66,12 +66,12 @@ function pushProjects() {
     );
     proj_header.classList.add(..."flex justify-between".split(" "));
     addTab.classList.add(
-      ..."ml-4 border-b-2 border-l-2 border-r-2 border-dotted border-white p-1".split(
+      ..."ml-4 rounded-b-md border-b-2 border-l-2 border-r-2 border-dotted border-white p-0.5".split(
         " ",
       ),
     );
     proj_title.classList.add(
-      ..."h-12 w-3/4 border-b-2 border-l-2 border-dotted border-white pt-1.5 text-center text-2xl font-bold text-white".split(
+      ..."h-12 w-3/4 border-b-4 border-l-4 border-dotted border-white pt-1.5 text-center text-2xl font-bold text-white".split(
         " ",
       ),
     );
@@ -121,17 +121,21 @@ function pushTabs(project, tab_container) {
 
     tab_group.classList.add(..."flex w-11/12 items-center".split(" "));
     tab.classList.add(
-      ..."h-12 grow rounded-br-lg rounded-tr-lg border-y-2 border-r-2 border-solid border-white".split(
+      ..."h-12 grow rounded-r-lg border-y-2 border-r-2 border-solid border-white pt-2 text-white".split(
         " ",
       ),
     );
     closeTab.classList.add(
-      ..."rounded-br-md rounded-tr-md border-y-2 border-r-2 border-dotted border-white p-1".split(
+      ..."rounded-r-md border-y-2 border-r-2 border-dotted border-white p-1".split(
         " ",
       ),
     );
 
     tab.innerText = txb.title;
+
+    closeTab.addEventListener("click", function () {
+      Clicks.closeTab_click(project, tab_container, txb);
+    });
 
     tab_container.append(tab_group);
     tab_group.append(tab, closeTab);
@@ -153,6 +157,10 @@ const Clicks = {
   closeProj_click(project) {
     project.deleteProject();
     displayProjects();
+  },
+  closeTab_click(project, tab_container, txb) {
+    txb.deleteTab(project);
+    displayTabs(project, tab_container);
   },
 };
 

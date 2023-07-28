@@ -11,7 +11,10 @@ const projectMethods = {
 };
 
 const tabMethods = {
-  deleteTab() {},
+  deleteTab(project) {
+    project.tabsArray.splice(project.tabsArray.indexOf(this), 1);
+    console.log(this);
+  },
 };
 
 function projectFactory() {
@@ -30,7 +33,7 @@ function tabFactory() {
   let date = "date";
   let notes = "notes";
 
-  return Object.assign(Object.create(projectMethods), {
+  return Object.assign(Object.create(tabMethods), {
     title,
     priority,
     date,
