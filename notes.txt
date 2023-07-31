@@ -19,3 +19,14 @@ _____________
 tailwind changes:
 
 tab component
+
+*consider deleting Date in tab objects
+
+__________________
+BUGS:
+*need something to save editing contenteditable if another button is clicked
+- maybe just save it on every keystroke
+
+*tab text overflow issue
+
+*set contenteditable max lengths

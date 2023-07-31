@@ -71,7 +71,7 @@ function pushProjects() {
       ),
     );
     proj_title.classList.add(
-      ..."h-12 w-3/4 border-b-4 border-l-4 border-dotted border-white pt-1.5 text-center text-2xl font-bold text-white".split(
+      ..."h-12 w-3/4 truncate border-b-4 border-l-4 border-dotted border-white pt-1.5 text-center text-2xl font-bold text-white".split(
         " ",
       ),
     );
