@@ -14,3 +14,8 @@ ESLint project after, how to undo? separate copy? use a branch
 
 Tailwind prettier plugin can't get to work with classList.add
 
+_____________
+
+tailwind changes:
+
+tab component

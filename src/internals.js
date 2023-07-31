@@ -13,12 +13,11 @@ const projectMethods = {
 const tabMethods = {
   deleteTab(project) {
     project.tabsArray.splice(project.tabsArray.indexOf(this), 1);
-    console.log(this);
   },
 };
 
 function projectFactory() {
-  let title = "new project";
+  let title = " ";
   const tabsArray = [];
 
   return Object.assign(Object.create(projectMethods), {
