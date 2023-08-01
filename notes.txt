@@ -15,18 +15,16 @@ ESLint project after, how to undo? separate copy? use a branch
 Tailwind prettier plugin can't get to work with classList.add
 
 _____________
+TODO:
 
-tailwind changes:
+*clean up event listeners and how they are stored
 
-tab component
 
-*consider deleting Date in tab objects
 
 __________________
 BUGS:
-*need something to save editing contenteditable if another button is clicked
-- maybe just save it on every keystroke
+*mouseenter functions buggy
 
-*tab text overflow issue
+*text overflow and focus, maybe limit length?
 
-*set contenteditable max lengths
+

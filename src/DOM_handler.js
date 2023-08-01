@@ -94,8 +94,9 @@ function pushProjects() {
         proj_title.setAttribute("contentEditable", "plaintext-only");
       }
     };
-
-    proj_title.addEventListener("mouseenter", Clicks.proj_title_mouseenter);
+    proj_title.addEventListener("blur", function () {
+      project.title = proj_title.innerText;
+    });
     addTab.addEventListener("click", function () {
       Clicks.addTab_click(project, tab_container);
     });
@@ -132,7 +133,9 @@ function pushTabs(project, tab_container) {
       ),
     );
     tab_title.classList.add(
-      ..."h-full flex-1 truncate pl-3 pt-2.5 text-white".split(" "),
+      ..."h-full flex-1 truncate indent-3 leading-[2.9rem] text-white".split(
+        " ",
+      ),
     );
     action_group.classList.add(
       ..."flex h-full w-20 items-center justify-around border-l-2 border-white".split(
@@ -160,9 +163,15 @@ function pushTabs(project, tab_container) {
         tab_title.setAttribute("contentEditable", "plaintext-only");
       }
     };
-
-    tab_title.addEventListener("mouseenter", Clicks.tab_title_mouseenter);
-
+    tab_title.addEventListener("blur", function () {
+      txb.title = tab_title.innerText;
+    });
+    priority.addEventListener("click", function () {
+      Clicks.priority_click(project, tab_container, txb);
+    });
+    priority.addEventListener("mouseleave", function () {
+      Clicks.priority_mouseleave(project, tab_container);
+    });
     closeTab.addEventListener("click", function () {
       Clicks.closeTab_click(project, tab_container, txb);
     });
@@ -179,11 +188,11 @@ const Clicks = {
     createProject();
     displayProjects();
   },
-  proj_title_mouseenter() {
-    this.focus();
-    window.getSelection().selectAllChildren(this);
-    window.getSelection().collapseToEnd();
-  },
+  // proj_title_mouseenter() {
+  //   this.focus();
+  //   window.getSelection().selectAllChildren(this);
+  //   window.getSelection().collapseToEnd();
+  // },
   addTab_click(project, tab_container) {
     project.createTab();
     displayTabs(project, tab_container);
@@ -192,14 +201,28 @@ const Clicks = {
     project.deleteProject();
     displayProjects();
   },
+  // tab_title_mouseenter() {
+  //   this.focus();
+  //   window.getSelection().selectAllChildren(this);
+  //   window.getSelection().collapseToEnd();
+  // },
+  priority_click(project, tab_container, txb) {
+    txb.priority++;
+    if (txb.priority > 3) {
+      txb.priority = 0;
+    }
+    this.innerText = txb.priority;
+    displayTabs(project, tab_container);
+  },
+  priority_mouseleave(project, tab_container) {
+    project.tabsArray = project.tabsArray.sort(
+      (a, b) => a.priority - b.priority,
+    );
+    displayTabs(project, tab_container);
+  },
   closeTab_click(project, tab_container, txb) {
     txb.deleteTab(project);
     displayTabs(project, tab_container);
-  },
-  tab_title_mouseenter() {
-    this.focus();
-    window.getSelection().selectAllChildren(this);
-    window.getSelection().collapseToEnd();
   },
 };
 
