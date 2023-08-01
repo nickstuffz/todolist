@@ -1,6 +1,7 @@
 import { createProject, projectsArray } from "./internals.js";
 import add_svg from "./add.svg";
 import close_svg from "./close.svg";
+import expand_svg from "./expand.svg";
 
 const content = document.getElementById("content");
 const header = document.createElement("div");
@@ -33,7 +34,6 @@ function loadHeader() {
 
 function loadGrid() {
   grid.classList.add(..."grid grid-cols-auto gap-4 p-6".split(" "));
-  grid.id = "grid";
 
   content.append(grid);
 }
@@ -76,7 +76,7 @@ function pushProjects() {
       ),
     );
     tab_container.classList.add(
-      ..."tab_container flex flex-col gap-2".split(" "),
+      ..."tab_container flex w-11/12 flex-col gap-2".split(" "),
     );
     closeProj_container.classList.add(..."flex justify-end".split(" "));
     closeProj.classList.add(
@@ -84,6 +84,7 @@ function pushProjects() {
     );
 
     proj_title.innerText = project.title;
+
     proj_title.setAttribute("contentEditable", "plaintext-only");
     proj_title.onkeydown = function (event) {
       if (event.key === "Enter") {
@@ -116,14 +117,30 @@ function pushTabs(project, tab_container) {
   project.tabsArray.forEach((txb) => {
     const tab_group = document.createElement("div");
     const tab = document.createElement("div");
+    const tab_title = document.createElement("div");
+    const action_group = document.createElement("div");
+    const priority = document.createElement("div");
+    const expand = new Image();
+    expand.src = expand_svg;
     const closeTab = new Image();
     closeTab.src = close_svg;
 
     tab_group.classList.add(..."flex w-11/12 items-center".split(" "));
     tab.classList.add(
-      ..."h-12 grow rounded-r-lg border-y-2 border-r-2 border-solid border-white pt-2 text-white".split(
+      ..."flex h-12 flex-1 justify-between overflow-hidden rounded-r-lg border-y-2 border-r-2 border-solid border-white".split(
         " ",
       ),
+    );
+    tab_title.classList.add(
+      ..."h-full flex-1 truncate pl-3 pt-2.5 text-white".split(" "),
+    );
+    action_group.classList.add(
+      ..."flex h-full w-20 items-center justify-around border-l-2 border-white".split(
+        " ",
+      ),
+    );
+    priority.classList.add(
+      ..."w-8 text-center font-extrabold text-white".split(" "),
     );
     closeTab.classList.add(
       ..."rounded-r-md border-y-2 border-r-2 border-dotted border-white p-1".split(
@@ -131,7 +148,18 @@ function pushTabs(project, tab_container) {
       ),
     );
 
-    tab.innerText = txb.title;
+    tab_title.innerText = txb.title;
+    priority.innerText = txb.priority;
+
+    tab_title.setAttribute("contentEditable", "plaintext-only");
+    tab_title.onkeydown = function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        tab_title.setAttribute("contentEditable", "false");
+        txb.title = tab_title.innerText;
+        tab_title.setAttribute("contentEditable", "plaintext-only");
+      }
+    };
 
     closeTab.addEventListener("click", function () {
       Clicks.closeTab_click(project, tab_container, txb);
@@ -139,6 +167,8 @@ function pushTabs(project, tab_container) {
 
     tab_container.append(tab_group);
     tab_group.append(tab, closeTab);
+    tab.append(tab_title, action_group);
+    action_group.append(priority, expand);
   });
 }
 

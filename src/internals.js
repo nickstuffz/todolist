@@ -27,7 +27,7 @@ function projectFactory() {
 }
 
 function tabFactory() {
-  let title = "new tab";
+  let title = " ";
   let priority = 0;
   let date = "date";
   let notes = "notes";
