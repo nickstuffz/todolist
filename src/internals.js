@@ -17,7 +17,7 @@ const tabMethods = {
 };
 
 function projectFactory() {
-  let title = " ";
+  let title = "";
   const tabsArray = [];
 
   return Object.assign(Object.create(projectMethods), {
@@ -27,7 +27,7 @@ function projectFactory() {
 }
 
 function tabFactory() {
-  let title = " ";
+  let title = "";
   let priority = 0;
   let date = "date";
   let notes = "notes";

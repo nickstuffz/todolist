@@ -71,7 +71,7 @@ function pushProjects() {
       ),
     );
     proj_title.classList.add(
-      ..."h-12 w-3/4 truncate border-b-4 border-l-4 border-dotted border-white pt-1.5 text-center text-2xl font-bold text-white".split(
+      ..."h-12 w-3/4 truncate border-b-4 border-l-4 border-white pt-1.5 text-center text-2xl font-bold text-white".split(
         " ",
       ),
     );
@@ -95,7 +95,7 @@ function pushProjects() {
       }
     };
 
-    proj_title.addEventListener("click", Clicks.proj_title_click);
+    proj_title.addEventListener("mouseenter", Clicks.proj_title_mouseenter);
     addTab.addEventListener("click", function () {
       Clicks.addTab_click(project, tab_container);
     });
@@ -161,6 +161,8 @@ function pushTabs(project, tab_container) {
       }
     };
 
+    tab_title.addEventListener("mouseenter", Clicks.tab_title_mouseenter);
+
     closeTab.addEventListener("click", function () {
       Clicks.closeTab_click(project, tab_container, txb);
     });
@@ -177,8 +179,10 @@ const Clicks = {
     createProject();
     displayProjects();
   },
-  proj_title_click() {
-    this.innerText = "";
+  proj_title_mouseenter() {
+    this.focus();
+    window.getSelection().selectAllChildren(this);
+    window.getSelection().collapseToEnd();
   },
   addTab_click(project, tab_container) {
     project.createTab();
@@ -191,6 +195,11 @@ const Clicks = {
   closeTab_click(project, tab_container, txb) {
     txb.deleteTab(project);
     displayTabs(project, tab_container);
+  },
+  tab_title_mouseenter() {
+    this.focus();
+    window.getSelection().selectAllChildren(this);
+    window.getSelection().collapseToEnd();
   },
 };
 
