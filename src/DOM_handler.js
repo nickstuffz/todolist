@@ -84,18 +84,13 @@ function pushProjects() {
     );
 
     proj_title.innerText = project.title;
-
     proj_title.setAttribute("contentEditable", "plaintext-only");
-    proj_title.onkeydown = function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        proj_title.setAttribute("contentEditable", "false");
-        project.title = proj_title.innerText;
-        proj_title.setAttribute("contentEditable", "plaintext-only");
-      }
-    };
+
+    proj_title.addEventListener("keydown", function (event) {
+      Clicks.proj_title_keydown(event, project, proj_title);
+    });
     proj_title.addEventListener("blur", function () {
-      project.title = proj_title.innerText;
+      Clicks.proj_title_blur(project, proj_title);
     });
     addTab.addEventListener("click", function () {
       Clicks.addTab_click(project, tab_container);
@@ -153,18 +148,13 @@ function pushTabs(project, tab_container) {
 
     tab_title.innerText = txb.title;
     priority.innerText = txb.priority;
-
     tab_title.setAttribute("contentEditable", "plaintext-only");
-    tab_title.onkeydown = function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        tab_title.setAttribute("contentEditable", "false");
-        txb.title = tab_title.innerText;
-        tab_title.setAttribute("contentEditable", "plaintext-only");
-      }
-    };
+
+    tab_title.addEventListener("keydown", function (event) {
+      Clicks.tab_title_keydown(event, txb, tab_title);
+    });
     tab_title.addEventListener("blur", function () {
-      txb.title = tab_title.innerText;
+      Clicks.tab_title_blur(txb, tab_title);
     });
     priority.addEventListener("click", function () {
       Clicks.priority_click(project, tab_container, txb);
@@ -188,11 +178,17 @@ const Clicks = {
     createProject();
     displayProjects();
   },
-  // proj_title_mouseenter() {
-  //   this.focus();
-  //   window.getSelection().selectAllChildren(this);
-  //   window.getSelection().collapseToEnd();
-  // },
+  proj_title_keydown(event, project, proj_title) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      proj_title.setAttribute("contentEditable", "false");
+      project.title = proj_title.innerText;
+      proj_title.setAttribute("contentEditable", "plaintext-only");
+    }
+  },
+  proj_title_blur(project, proj_title) {
+    project.title = proj_title.innerText;
+  },
   addTab_click(project, tab_container) {
     project.createTab();
     displayTabs(project, tab_container);
@@ -201,11 +197,17 @@ const Clicks = {
     project.deleteProject();
     displayProjects();
   },
-  // tab_title_mouseenter() {
-  //   this.focus();
-  //   window.getSelection().selectAllChildren(this);
-  //   window.getSelection().collapseToEnd();
-  // },
+  tab_title_keydown(event, txb, tab_title) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      tab_title.setAttribute("contentEditable", "false");
+      txb.title = tab_title.innerText;
+      tab_title.setAttribute("contentEditable", "plaintext-only");
+    }
+  },
+  tab_title_blur(txb, tab_title) {
+    txb.title = tab_title.innerText;
+  },
   priority_click(project, tab_container, txb) {
     txb.priority++;
     if (txb.priority > 3) {
