@@ -1,4 +1,9 @@
-import { createProject, projectsArray } from "./internals.js";
+import {
+  createProject,
+  projectsArray,
+  saveLocalData,
+  getLocalData,
+} from "./internals.js";
 import add_svg from "./add.svg";
 import close_svg from "./close.svg";
 import expand_svg from "./expand.svg";
@@ -182,12 +187,12 @@ const Clicks = {
     if (event.key === "Enter") {
       event.preventDefault();
       proj_title.setAttribute("contentEditable", "false");
-      project.title = proj_title.innerText;
       proj_title.setAttribute("contentEditable", "plaintext-only");
     }
   },
   proj_title_blur(project, proj_title) {
     project.title = proj_title.innerText;
+    saveLocalData();
   },
   addTab_click(project, tab_container) {
     project.createTab();
@@ -201,12 +206,12 @@ const Clicks = {
     if (event.key === "Enter") {
       event.preventDefault();
       tab_title.setAttribute("contentEditable", "false");
-      txb.title = tab_title.innerText;
       tab_title.setAttribute("contentEditable", "plaintext-only");
     }
   },
   tab_title_blur(txb, tab_title) {
     txb.title = tab_title.innerText;
+    saveLocalData();
   },
   priority_click(project, tab_container, txb) {
     txb.priority++;
@@ -241,6 +246,14 @@ function displayTabs(project, tab_container) {
 function initializePage() {
   loadHeader();
   loadGrid();
+  const savedArray = getLocalData();
+  projectsArray = Object.assign(projectsArray, savedArray);
+  // console.log(projectsArray);
+  // console.log(savedArray);
+  // pushProjects();
+
+  // SOLVE CANNOT SET PROPERTY OF projectsArray as it is exported,
+  // only getter.
 }
 
 export { initializePage };

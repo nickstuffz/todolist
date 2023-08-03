@@ -45,4 +45,32 @@ function createProject() {
   projectsArray[index] = projectFactory();
 }
 
-export { createProject, projectsArray };
+function saveLocalData() {
+  const myJSON = JSON.stringify(projectsArray);
+  localStorage.setItem("projectsArray_string", myJSON);
+}
+
+function getLocalData() {
+  const myJSON = localStorage.getItem("projectsArray_string");
+  const savedArray = JSON.parse(myJSON);
+  console.log(savedArray);
+  savedArray.forEach((project) => {
+    Object.assign(project, projectMethods);
+    project.tabsArray.forEach((tab) => {
+      Object.assign(tab, tabMethods);
+    });
+  });
+
+  return savedArray;
+}
+
+// function setMethods(savedArray) {
+//   savedArray.forEach((project) => {
+//     Object.assign(project, projectMethods);
+//     project.tabsArray.forEach((tab) => {
+//       Object.assign(tab, tabMethods);
+//     });
+//   });
+// }
+
+export { createProject, projectsArray, saveLocalData, getLocalData };
