@@ -2,7 +2,7 @@ import {
   createProject,
   projectsArray,
   saveLocalData,
-  getLocalData,
+  applyLocalData,
 } from "./internals.js";
 import add_svg from "./add.svg";
 import close_svg from "./close.svg";
@@ -92,7 +92,7 @@ function pushProjects() {
     proj_title.setAttribute("contentEditable", "plaintext-only");
 
     proj_title.addEventListener("keydown", function (event) {
-      Clicks.proj_title_keydown(event, project, proj_title);
+      Clicks.proj_title_keydown(event, proj_title);
     });
     proj_title.addEventListener("blur", function () {
       Clicks.proj_title_blur(project, proj_title);
@@ -156,7 +156,7 @@ function pushTabs(project, tab_container) {
     tab_title.setAttribute("contentEditable", "plaintext-only");
 
     tab_title.addEventListener("keydown", function (event) {
-      Clicks.tab_title_keydown(event, txb, tab_title);
+      Clicks.tab_title_keydown(event, tab_title);
     });
     tab_title.addEventListener("blur", function () {
       Clicks.tab_title_blur(txb, tab_title);
@@ -183,7 +183,8 @@ const Clicks = {
     createProject();
     displayProjects();
   },
-  proj_title_keydown(event, project, proj_title) {
+  proj_title_keydown(event, proj_title) {
+    console.log("pkey");
     if (event.key === "Enter") {
       event.preventDefault();
       proj_title.setAttribute("contentEditable", "false");
@@ -201,8 +202,9 @@ const Clicks = {
   closeProj_click(project) {
     project.deleteProject();
     displayProjects();
+    saveLocalData();
   },
-  tab_title_keydown(event, txb, tab_title) {
+  tab_title_keydown(event, tab_title) {
     if (event.key === "Enter") {
       event.preventDefault();
       tab_title.setAttribute("contentEditable", "false");
@@ -220,16 +222,19 @@ const Clicks = {
     }
     this.innerText = txb.priority;
     displayTabs(project, tab_container);
+    saveLocalData();
   },
   priority_mouseleave(project, tab_container) {
     project.tabsArray = project.tabsArray.sort(
       (a, b) => a.priority - b.priority,
     );
     displayTabs(project, tab_container);
+    saveLocalData();
   },
   closeTab_click(project, tab_container, txb) {
     txb.deleteTab(project);
     displayTabs(project, tab_container);
+    saveLocalData();
   },
 };
 
@@ -246,8 +251,8 @@ function displayTabs(project, tab_container) {
 function initializePage() {
   loadHeader();
   loadGrid();
-  const savedArray = getLocalData();
-  projectsArray = Object.assign(projectsArray, savedArray);
+  applyLocalData();
+  pushProjects();
   // console.log(projectsArray);
   // console.log(savedArray);
   // pushProjects();

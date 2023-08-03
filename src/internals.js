@@ -50,10 +50,16 @@ function saveLocalData() {
   localStorage.setItem("projectsArray_string", myJSON);
 }
 
-function getLocalData() {
+function applyLocalData() {
+  // retrieve local data
   const myJSON = localStorage.getItem("projectsArray_string");
+  if (myJSON === null) {
+    console.log("its null");
+    return;
+  }
   const savedArray = JSON.parse(myJSON);
-  console.log(savedArray);
+
+  // assigning methods to local data
   savedArray.forEach((project) => {
     Object.assign(project, projectMethods);
     project.tabsArray.forEach((tab) => {
@@ -61,16 +67,8 @@ function getLocalData() {
     });
   });
 
-  return savedArray;
+  // apply local data
+  Object.assign(projectsArray, savedArray);
 }
 
-// function setMethods(savedArray) {
-//   savedArray.forEach((project) => {
-//     Object.assign(project, projectMethods);
-//     project.tabsArray.forEach((tab) => {
-//       Object.assign(tab, tabMethods);
-//     });
-//   });
-// }
-
-export { createProject, projectsArray, saveLocalData, getLocalData };
+export { createProject, projectsArray, saveLocalData, applyLocalData };

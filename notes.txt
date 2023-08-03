@@ -20,11 +20,18 @@ TODO:
 *clean up event listeners and how they are stored
 
 
+long term:
+*speed rebuild, select project to rebuild rather than rebuilding all
+*refactor code into state reflection rather than rebuild, REACT?
+*figure out how to save data on keydown instead of blur
+
+
+
+
 
 __________________
 BUGS:
-*mouseenter functions buggy
+*mouseenter functions buggy, disabled for now
 
 *text overflow and focus, maybe limit length?
-
 
